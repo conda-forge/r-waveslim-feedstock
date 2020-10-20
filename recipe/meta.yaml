@@ -43,7 +43,7 @@ test:
 
 about:
   home: http://waveslim.blogspot.com, http://www2.imperial.ac.uk/~bwhitche/book
-  license: BSD_3_clause
+  license: BSD-3-Clause
   license_file: LICENSE
   summary: Basic wavelet routines for time series (1D), image (2D)  and array (3D) analysis.  The code provided here is based on wavelet methodology developed in
     Percival and Walden (2000); Gencay, Selcuk and Whitcher (2001); the dual-tree complex wavelet transform (DTCWT) from Kingsbury (1999, 2001) as implemented by
