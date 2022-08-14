@@ -1,4 +1,4 @@
-{% set version = "1.8.3" %}
+{% set version = "1.8.4" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/waveslim_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/waveslim/waveslim_{{ version }}.tar.gz
-  sha256: 988bdce52ce1c31cb0abb4fb7a9f1e9192283f597c2a418f0010f780dbe3b37b
+  sha256: 408eeea72a218ef3458f0934ff556733cacf1a63ddaa52491abcc1fce6ed2094
 
 build:
   merge_build_host: true  # [win]
