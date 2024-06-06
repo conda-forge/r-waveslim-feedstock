@@ -1,4 +1,4 @@
-{% set version = "1.8.4" %}
+{% set version = "1.8.5" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/waveslim_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/waveslim/waveslim_{{ version }}.tar.gz
-  sha256: 408eeea72a218ef3458f0934ff556733cacf1a63ddaa52491abcc1fce6ed2094
+  sha256: 1e98a823075e34fd80a3613ae62e731915bdb45bb8cf4b249f5be7a90d00a775
 
 build:
   merge_build_host: true  # [win]
-  number: 2
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -22,7 +22,9 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
+    - {{ stdlib("c") }}                # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
+    - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('fortran') }}        # [not win]
     - {{ compiler('m2w64_fortran') }}  # [win]
     - {{ posix }}filesystem        # [win]
@@ -32,9 +34,11 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
+    - r-multitaper
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
+    - r-multitaper
 
 test:
   commands:
@@ -44,15 +48,16 @@ test:
 about:
   home: http://waveslim.blogspot.com, http://www2.imperial.ac.uk/~bwhitche/book
   license: BSD-3-Clause
-  license_file: LICENSE
   summary: Basic wavelet routines for time series (1D), image (2D)  and array (3D) analysis.  The code provided here is based on wavelet methodology developed in Percival and Walden (2000); Gencay, Selcuk and Whitcher (2001); the dual-tree complex wavelet transform (DTCWT) from Kingsbury (1999, 2001) as implemented by Selesnick;
     and Hilbert wavelet pairs (Selesnick 2001, 2002).  All figures in chapters 4-7 of GSW (2001) are reproducible using this  package and R code available at the book website(s) below.
   license_family: BSD
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/BSD_3_clause'
+    - LICENSE
 
 extra:
   recipe-maintainers:
     - conda-forge/r
-
 
 # Package: waveslim
 # Version: 1.7.5.1
